@@ -1,0 +1,46 @@
+---
+// Hero Component
+import { getImage, Image } from 'astro:assets';
+import backgroundImage from "../assets/media.jpg"; 
+const optimizedBackground = await getImage({src: backgroundImage, format: 'jpg'})
+---
+
+<section 
+	class="relative text-white bg-cover bg-center bg-no-repeat bg-fixed"
+	style={`background-image: url(${optimizedBackground.src});`}
+>
+	<!-- Gradient Overlay -->
+	<div class="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-blue-800/80 to-blue-700/80"></div>
+	<Image 
+		src={backgroundImage} 
+		alt="Background Image" 
+		class="absolute inset-0 w-full h-full object-cover opacity-0" 
+		loading="eager"
+	/>
+	<!-- Content -->
+	<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+		<div class="text-center">
+			<h1 class="text-4xl md:text-6xl font-bold mb-6">
+				Looking for a First-class <span class="text-blue-300">Project Safety Consultant?</span>
+			</h1>
+			<p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+				Element Safety LLC provides comprehensive Environmental Health and Safety programs 
+				that deliver exceptional outcomes for your business.
+			</p>
+			<div class="flex flex-col sm:flex-row gap-4 justify-center">
+				<a 
+					href="/contact" 
+					class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-colors"
+				>
+					Get Free Estimate
+				</a>
+				<a 
+					href="/services" 
+					class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-colors"
+				>
+					Learn More
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
