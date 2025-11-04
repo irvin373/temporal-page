@@ -9,5 +9,8 @@ export default defineConfig({
   base: '/temporal-page',
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+  server: {
+    open: true, // 🚀 Esto hace que se abra el navegador automáticamente
+  },
 });
