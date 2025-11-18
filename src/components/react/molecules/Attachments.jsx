@@ -1,6 +1,5 @@
 import Label from "../atoms/Label";
 import FileInput from "../atoms/FileInput";
-import React from "react";
 
 export default function Attachments({ resumeRef }) {
     return (

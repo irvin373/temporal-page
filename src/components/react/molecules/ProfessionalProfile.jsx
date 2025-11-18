@@ -2,7 +2,7 @@ import Label from "../atoms/Label";
 import TextInput from "../atoms/TextInput";
 import TextArea from "../atoms/TextArea";
 
-export default function ProfessionalProfile()  {
+export default function ProfessionalProfile( { onChange, values } ) {
     return (
         <div className="professional-profile">
 

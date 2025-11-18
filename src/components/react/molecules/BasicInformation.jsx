@@ -2,7 +2,7 @@ import Label from '../atoms/Label';
 import TextInput from '../atoms/TextInput';
 import RadioGroup from '../atoms/RadioGroup';
 
-function BasicInformation() {
+function BasicInformation( { onChange, values: form, errors } ) {
     return (
         <div className="Basic--Information">
 
@@ -15,6 +15,7 @@ function BasicInformation() {
                     value={form.fullName || ''}
                     onChange={val => onChange('fullName', val)}
                     required
+                    error={errors?.fullName}
                 />
             </div>
 
@@ -29,9 +30,10 @@ function BasicInformation() {
                     value={form.emailAddress || ''}
                     onChange={val => onChange('emailAddress', val)}
                     required
+                    error={errors?.emailAddress}
                 />
 
-                <Label htmlFor={phoneNumber} required>Phone Number</Label>
+                <Label htmlFor="phoneNumber" required>Phone Number</Label>
                 <TextInput
                     id="phoneNumber"
                     name="phoneNumber"
@@ -41,6 +43,7 @@ function BasicInformation() {
                     value={form.phoneNumber || ''}
                     onChange={val => onChange('phoneNumber', val)}
                     required
+                    error={errors?.phoneNumber}
                 />
             </div>
 
@@ -52,6 +55,7 @@ function BasicInformation() {
                     value={form.city || ''}
                     onChange={val => onChange('city', val)}
                     required
+                    error={errors?.city}
                 />
 
                 <Label htmlFor="state" required>State</Label>
@@ -61,6 +65,7 @@ function BasicInformation() {
                     value={form.state || ''}
                     onChange={val => onChange('state', val)}
                     required
+                    error={errors?.state}
                 />
 
                 <Label htmlFor="country" required>Country</Label>
@@ -70,6 +75,7 @@ function BasicInformation() {
                     value={form.country || ''}
                     onChange={val => onChange('country', val)}
                     required
+                    error={errors?.country}
                 />
             </div>
 

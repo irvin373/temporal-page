@@ -2,7 +2,7 @@ import Label from "../atoms/Label";
 import TextInput from "../atoms/TextInput";
 import Select from "../atoms/Select";
 
-export default function JobInterests() {
+export default function JobInterests( { onChange, values } ) {
     return (
         <div className="job-interests">
 
@@ -22,13 +22,13 @@ export default function JobInterests() {
                     id="preferredWorkArrangement"
                     name="preferredWorkArrangement"
                     value={values.preferredWorkArrangement || ''}
-                    onChange={(e) => onChange?.('preferredWorkArrangement', e.target.value)}
-                >
-                    <option value="">-- Select work arrangement --</option>
-                    <option value="onsite">Onsite</option>
-                    <option value="hybrid">Hybrid</option>
-                    <option value="remote">Remote</option>
-                </Select>
+                    onChange={(val) => onChange?.('preferredWorkArrangement', val)}
+                    options={[
+                        { value: 'onsite', label: 'Onsite' },
+                        { value: 'hybrid', label: 'Hybrid' },
+                        { value: 'remote', label: 'Remote' },
+                    ]}
+                />
             </div>
 
             <div className="salary-expectations">
@@ -49,15 +49,14 @@ export default function JobInterests() {
                     id="availabilityToStart"
                     name="availabilityToStart"
                     value={values.availabilityToStart || ''}
-                    onChange={(e) => onChange?.('availabilityToStart', e.target.value)}
-                >
-                    <option value="">-- Select availability --</option>
-                    <option value="immediately">Immediately</option>
-                    <option value="1week">In 1 week</option>
-                    <option value="2weeks">In 2 weeks</option>
-                    <option value="1month">In 1 month</option>
-                    <option value="other">Other</option>
-                </Select>
+                    onChange={(val) => onChange?.('availabilityToStart', val)}
+                    options={[
+                        { value: 'immediately', label: 'Immediately' },
+                        { value: '1-2 weeks', label: '1-2 Weeks' },
+                        { value: '2-4 weeks', label: '2-4 Weeks' },
+                        { value: 'more than 1 month', label: 'More than 1 Month' },
+                    ]}
+                />
             </div>
 
         </div>
