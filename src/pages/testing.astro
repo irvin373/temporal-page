@@ -1,13 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import FormJob from '../components/react/organisms/FormJob.jsx';
-import { Apply } from '../components/react/organisms/Apply';
+import { Apply } from '../components/organisms/Apply.jsx';
 ---
 
 <Layout title="Testing Page" description='?'>
-    <h1>Testing Page</h1>
     <section>
-        <!-- <FormJob client:load/> -->
         <Apply client:load/>
         
     </section>
