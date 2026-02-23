@@ -6,6 +6,7 @@ import WhyElementSafety from '../components/WhyElementSafety.astro';
 import ServicesOverview from '../components/ServicesOverview.astro';
 import CallToAction from '../components/CallToAction.astro';
 import Expertise from '../components/Expertise.astro';
+import ApplyForm from '../components/react/ApplyForm';
 ---
 
 <Layout title="Element Safety LLC - Professional Safety Consulting Services">
@@ -14,5 +15,6 @@ import Expertise from '../components/Expertise.astro';
 	<Expertise/>
 	<WhyElementSafety />
 	<ServicesOverview />
+	<ApplyForm client:load />
 	<CallToAction />	
 </Layout>
