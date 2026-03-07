@@ -1,45 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Stepper from './Stepper';
 import Step1BasicInfo from './steps/Step1BasicInfo';
 import Step2Professional from './steps/Step2Professional';
 import Step3Education from './steps/Step3Education';
 import Step4JobInterests from './steps/Step4JobInterests';
 import Step5Attachments from './steps/Step5Attachments';
+import { useApplyForm } from '../../hooks/useAplyForm';
 
 export default function ApplyForm() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 5;
-
-  const [formData, setFormData] = useState({
-    languages: [{ language: '', proficiency: '' }]
-  });
-
-  const updateFormData = (newData) => {
-    setFormData(newData);
-  };
-
-  const handleNext = (e) => {
-    e.preventDefault();
-    // Validate form based on HTML required fields if needed
-    // Assuming button handles form submission for native validation
-    if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
-  const handleBack = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Submitted", formData);
-    alert("Application submitted successfully!");
-  };
+  const {
+    currentStep,
+    totalSteps,
+    formData,
+    updateFormData,
+    handleNext,
+    handleBack,
+    handleSubmit,
+    isSubmitting,
+    submitError,
+    isSubmitted,
+  } = useApplyForm();
 
   const renderStep = () => {
     switch (currentStep) {
@@ -57,6 +37,22 @@ export default function ApplyForm() {
         return <Step1BasicInfo formData={formData} updateFormData={updateFormData} />;
     }
   };
+
+  if (isSubmitted) {
+    return (
+      <div className="min-h-screen bg-[#fafafa] py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900 flex items-center justify-center">
+        <div className="max-w-lg mx-auto text-center">
+          <div className="mb-6">
+            <svg className="mx-auto h-16 w-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-4">Application Submitted!</h2>
+          <p className="text-lg text-gray-500">Thank you for applying. We will review your application and contact you within 2 weeks.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#fafafa] py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900">
@@ -93,9 +89,10 @@ export default function ApplyForm() {
 
               <button
                 type="submit"
-                className="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                disabled={isSubmitting}
+                className="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {currentStep === totalSteps ? 'Submit' : 'Next'}
+                {isSubmitting ? 'Submitting...' : currentStep === totalSteps ? 'Submit' : 'Next'}
                 {currentStep !== totalSteps && (
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -105,6 +102,12 @@ export default function ApplyForm() {
             </div>
           </div>
         </form>
+
+        {submitError && (
+          <div className="max-w-3xl mx-auto mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm text-center">
+            {submitError}
+          </div>
+        )}
 
         <p className="text-sm text-gray-500 text-center max-w-lg mx-auto leading-relaxed">
           * Required fields. Applications are reviewed on a rolling basis. <br />
