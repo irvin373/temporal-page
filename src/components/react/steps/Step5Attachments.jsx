@@ -16,7 +16,8 @@ export default function Step5Attachments({ formData, updateFormData }) {
     if (file) {
       updateFormData({
         ...formData,
-        resume: file.name // Just saving name for UI preview purposes
+        resume: file.name,
+        resumeFile: file,
       });
     }
   };
