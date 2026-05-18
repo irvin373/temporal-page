@@ -1,8 +1,8 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 
-const EMAILJS_SERVICE_ID = "service_tuservice";
-const EMAILJS_TEMPLATE_ID = "template_tu_template";
-const EMAILJS_PUBLIC_KEY = "tu_public_key";
+const EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
 
 interface FormState {
   name: string;
