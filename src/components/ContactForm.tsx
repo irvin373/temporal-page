@@ -47,8 +47,7 @@ export default function ContactForm() {
               from_email: form.email,
               company: form.company,
               message: form.message,
-              to_email: "info@elementsafetyllc.com",
-              // to_email: "rochacristhian77@gmail.com", //test
+              to_email: " peopleteam@elementsafetyllc.com",
             },
           }),
         }
