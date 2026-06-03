@@ -13,7 +13,11 @@ interface FormState {
 
 type SubmitStatus = "idle" | "sending" | "success" | "error";
 
-export default function ContactForm() {
+interface ContactFormProps {
+  hideTitle?: boolean;
+}
+
+export default function ContactForm({ hideTitle = false }: ContactFormProps) {
   const [form, setForm] = useState<FormState>({
     name: "",
     company: "",
@@ -70,9 +74,11 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 md:p-8 rounded-lg shadow-lg">
       <div className="space-y-5">
-        <p className="text-xl font-semibold text-black mb-6">
-          Send us a message
-        </p>
+        {!hideTitle && (
+          <p className="text-xl font-semibold text-black mb-6">
+            Send us a message
+          </p>
+        )}
 
         <div>
           <label htmlFor="name" className="block text-gray-500 font-medium mb-2">
